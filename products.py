@@ -1,4 +1,14 @@
+# 讀取已存在之資料
 products = []
+with open('products.csv', 'r', encoding = 'utf-8') as f:
+	for line in f:
+		if '商品,價格' in line:
+			continue # 跳過後面要執行的動作,繼續讀取下一輪。和break相同,僅用於迴圈。
+		name, price = line.strip().split(',') # spilt(',')指原檔遇到','及切割
+		products.append([name, price])
+print(products)
+
+#讓使用者輸入內
 while True:
 	name = input('請輸入商品名稱: ')
 	if name == 'q':
@@ -8,9 +18,11 @@ while True:
 	products.append([name, price])
 print(products)
 
+#印出所有購買紀錄
 for p in products: # p = [name, price]
 	print(p[0], '的價格是', p[1])
 
+#寫入檔案
 with open('products.csv', 'w', encoding = 'utf-8') as f: # utf-8 為最廣泛使用的編碼
 	f.write('商品,價格\n') # 加入欄位名稱
 	for p in products:
