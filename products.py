@@ -1,9 +1,7 @@
-#檢查檔案在不在並讀取
-
 import os # operating system
 
 products = []
-if os.path.isfile('products.csv'): # os.path.isfile 不需要記,上網可查到
+if os.path.isfile('products.csv'): # 檢查檔案在不在 os.path.isfile 不需要記,上網可查到
 	print('yea!找到檔案')
 	with open('products.csv', 'r', encoding = 'utf-8') as f:
 		for line in f:
