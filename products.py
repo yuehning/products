@@ -1,14 +1,22 @@
-# 讀取已存在之資料
-products = []
-with open('products.csv', 'r', encoding = 'utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue # 跳過後面要執行的動作,繼續讀取下一輪。和break相同,僅用於迴圈。
-		name, price = line.strip().split(',') # spilt(',')指原檔遇到','及切割
-		products.append([name, price])
-print(products)
+#檢查檔案在不在並讀取
 
-#讓使用者輸入內
+import os # operating system
+
+products = []
+if os.path.isfile('products.csv'): # os.path.isfile 不需要記,上網可查到
+	print('yea!找到檔案')
+	with open('products.csv', 'r', encoding = 'utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue # 跳過後面要執行的動作,繼續讀取下一輪。和break相同,僅用於迴圈。
+			name, price = line.strip().split(',') # spilt(',')指原檔遇到','及切割
+			products.append([name, price])
+	print(products)
+
+else:
+	print('找不到檔案...')	
+
+#讓使用者輸入內容
 while True:
 	name = input('請輸入商品名稱: ')
 	if name == 'q':
